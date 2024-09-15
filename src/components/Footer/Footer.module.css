@@ -1,0 +1,54 @@
+.container {
+  background-color: var(--bg-secondary);
+  padding: var(--spacing-xxl);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  text-align: center;
+  gap: var(--spacing-lg);
+}
+.github {
+  display: flex;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xxs) var(--spacing-md);
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-color);
+  border-radius: 100px;
+  font-weight: 500;
+}
+.mid {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+}
+.top {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+}
+.midLinks {
+  display: flex;
+  gap: var(--spacing-md);
+}
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+@media (max-width : 768px) {
+  .container {
+    flex-direction: column;
+    padding: var(--spacing-xl) var(--spacing-md);
+    align-items: center;
+  }
+  .top {
+    align-items: center;
+  }
+  .mid {
+    align-items: center;
+  }
+}

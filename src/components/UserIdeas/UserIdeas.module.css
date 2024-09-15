@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.item {
+  padding: var(--spacing-md);
+  border: 2px solid var(--border-color);
+  border-radius: 5px;
+  text-align: center;
+}

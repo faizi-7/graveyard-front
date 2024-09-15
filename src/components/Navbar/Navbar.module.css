@@ -1,0 +1,120 @@
+
+.navbar {
+  height: 50px;
+  border-bottom: 1.5px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md) var(--spacing-xxl);
+  background-color: var(--bg-secondary);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; 
+}
+.toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--textColor);
+  font-size: var(--fontHeading);
+  cursor: pointer;
+}
+.menu {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin: 0;
+  padding: 0;
+}
+.menu button {
+  background-color: var(--error-color);
+  color: var(--bg-primary);
+  padding: 0 10px;
+
+}
+
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: var(--spacing-md);
+  }
+  .toggle {
+    display: block;
+  }
+
+  .menu {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    position: absolute;
+    top: 50px;
+    left: 0;
+    background-color: var(--bg-secondary);
+    max-height: 0;
+    overflow: hidden;
+    width: 100vw;
+    transition: max-height  0.3s ease;
+    transition: padding 0.2s ease;
+  }
+  
+  .menuOpen {
+    padding: var(--spacing-md) 0;
+    max-height: 400px;
+  }
+  .menu .item {
+    margin: 5px 0;
+  }
+}
+
+.profileContainer {
+  display: flex;
+  flex-direction: column;
+}
+.avatarContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 5px;
+  padding-right: 10px;
+  background-color: var(--secondary-color);
+  border-radius: 100px;
+  color: white;
+  cursor: pointer;
+}
+.avatar {
+  height: 30px;
+  border-radius: 100px;
+}
+.avatarName {
+  font-weight: 500;
+}
+
+.avatarContainer {
+  position: relative;
+}
+.avatarOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  visibility: hidden;
+  position: absolute;
+  top: 44px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: var(--bg-secondary);
+  border: 1.5px solid var(--border-color);
+  transition: visibility 0s, opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  transform: translateY(-16px); 
+}
+
+.avatarOptions:hover {
+  visibility: visible;
+  transform: translateY(0);
+}
+.avatarContainer:hover + .avatarOptions {
+  transform: translateY(0);
+  visibility: visible;
+}
