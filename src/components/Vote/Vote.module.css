@@ -1,0 +1,29 @@
+.votes {
+  display: flex;
+  gap: 16px;
+  border: 2px solid var(--border-color);
+  border-radius: 100px;
+  width: max-content;
+  padding: 0 10px;
+}
+.upvote {
+  display: flex;
+  gap: 8px;
+  color: var(--success-color);
+  cursor: pointer;
+}
+.icon {
+  transition: stroke-width 0.3s ease;
+}
+.upvote:hover .icon {
+  stroke-width: 3;
+}
+.downvote:hover .icon {
+  stroke-width: 3;
+}
+.downvote {
+  display: flex;
+  gap: 8px;
+  color: var(--error-color);
+  cursor: pointer;
+}

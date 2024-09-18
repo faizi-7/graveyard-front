@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { useSetRecoilState } from "recoil";
 import { tokenState } from "../../recoil/atom";
+import logo from '../../assets/images/logo.png'
 
 export default function Navbar() {
   const { data, isLoading, error } = useAuth();
@@ -27,7 +28,7 @@ export default function Navbar() {
     <nav className={styles.navbar}>
       <h2>
         <Link to="/" >
-          Ideas💡
+          <img src={logo} className={styles.logo}/>
         </Link>
       </h2>
       <div
@@ -72,7 +73,8 @@ export default function Navbar() {
             </div>
             <div className={styles.avatarOptions}>
                 <div className={styles.item}><Link to={`/profile/${data.userId}` } className="link">Visit Profile</Link></div>
-                <div className={styles.item}><Link to='/updateprofile' className="link">Update Profile</Link></div>
+                <div className={styles.item}><Link to={`/upgrade/${data.userId}`} className="link">Upgrade Profile</Link></div>
+                {!data.emailVerified && <div className={styles.item}><Link to={`/verifyemail`} className="link">Verify Email</Link></div>}
                 <button className={styles.item} onClick={logoutHandler}>Logout</button>
             </div>
           </div>

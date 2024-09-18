@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between; /* Ensures proper spacing between form and image */
+}
+
+.form {
+  flex: 1;
+  padding-top: 20px; 
+}
+
+.formItem {
+  width: 100%;
+  margin-bottom: var(--spacing-md);
+}
+
+.formItem > input,
+.formItem > textarea {
+  width: 100%;
+  background-color: var(--bg-secondary);
+}
+.formImage {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.image {
+  max-width: 350px;
+}
+
+@media (max-width : 768px) {
+  .container {
+    flex-direction: column;
+  }
+  .image {
+    max-width: 250px;
+  }
+}

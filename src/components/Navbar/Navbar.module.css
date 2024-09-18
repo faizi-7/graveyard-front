@@ -13,6 +13,11 @@
   width: 100%;
   z-index: 1000; 
 }
+.logo {
+  height: 30px;
+  width: auto;
+  border-radius: 5px;
+}
 .toggle {
   display: none;
   background: none;

@@ -1,0 +1,35 @@
+.container {
+  width: 100%;
+}
+.card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  padding: var(--spacing-xl) var(--spacing-md);
+  border-radius: 10px;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+.profile > h3 {
+  color: var(--secondary-color);
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.profile > img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 100px;
+}

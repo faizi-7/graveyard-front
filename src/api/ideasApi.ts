@@ -15,12 +15,21 @@ export async function getAllIdeas({ pageParam = 0, sortBy, tags, isOriginal }: {
       data: response.data.data.ideas,
       nextCursor: response.data.data.nextCursor
     };
-  } catch (error) {
-    console.error('Error fetching ideas:', error);
-    throw error;
+  } catch (err: any) {
+    const errorMessage = err.response?.data?.message || err.message || 'An unexpected error occurred';
+    throw new Error(errorMessage);
   }
 }
 
+export async function getTopIdeas() {
+  try {
+    const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/ideas/top`)
+    return response.data.data
+  } catch (err: any) {
+    const errorMessage = err.response?.data?.message || err.message || 'An unexpected error occurred';
+    throw new Error(errorMessage);
+  }
+}
 export async function getSingleIdea(ideaId: string) {
   try {
     const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/ideas/${ideaId}`)
@@ -62,9 +71,61 @@ export async function getTags() {
   try {
     const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/ideas/tags`)
     return response.data.data
+  } catch (err: any) {
+    const errorMessage = err.response?.data?.message || err.message || 'An unexpected error occurred';
+    throw new Error(errorMessage);
   }
-  catch (error) {
-    console.error('Error fetching Tags:', error);
-    throw error;
+}
+
+export async function voteIdea(token: string, vote: string, ideaId: string) {
+  try {
+    const response = await axios({
+      method: "POST",
+      url: `${import.meta.env.VITE_API_BASE_URL}/ideas/${ideaId}/vote`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      data: { vote : vote }
+    })
+    return response.data.data
+  } catch (err: any) {
+    const errorMessage = err.response?.data?.message || err.message || 'An unexpected error occurred';
+    throw new Error(errorMessage);
+  }
+}
+
+
+export async function addIdeaToFavorite(token: string, ideaId: string) {
+  try {
+    const response = await axios({
+      method: "POST",
+      url: `${import.meta.env.VITE_API_BASE_URL}/ideas/favorites/${ideaId}`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    return response.data.data
+  } catch (err: any) {
+    const errorMessage = err.response?.data?.message || err.message || 'An unexpected error occurred';
+    throw new Error(errorMessage);
+  }
+}
+
+export async function updateIdea(ideaId: string, ideaBody: FormData, token: string) {
+
+  try {
+    const response = await axios({
+      method: 'PUT',
+      url: `${import.meta.env.VITE_API_BASE_URL}/ideas/${ideaId}`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data',
+      },
+      data: ideaBody,
+    });
+    return response.data.data;
+  } catch (err: any) {
+    const errorMessage = err.response?.data?.message || err.message || 'An unexpected error occurred';
+    throw new Error(errorMessage);
   }
 }

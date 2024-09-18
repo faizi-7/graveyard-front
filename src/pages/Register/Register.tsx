@@ -2,16 +2,16 @@ import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import styles from "./Register.module.css"; // Assuming you're using module CSS
 import { registerUser } from "../../api/authApi";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ErrorBox from "../../components/ErrorBox/ErrorBox";
 import SuccessBox from "../../components/SuccessBox/SuccessBox";
 
 const Register = () => {
   const [activeTab, setActiveTab] = useState<"basic" | "complete">("basic");
   const [countdown, setCountdown] = useState<number | null>(5);
-  const navigate= useNavigate()
+  const navigate = useNavigate();
   // Mutation to handle registration API call
-  const { mutate, isPending, isError, error, isSuccess} = useMutation({
+  const { mutate, isPending, isError, error, isSuccess } = useMutation({
     mutationFn: registerUser,
     onSuccess: () => {
       const timer = setInterval(() => {
@@ -25,9 +25,9 @@ const Register = () => {
         });
       }, 1000);
     },
-    onError : (err) => {
-      console.log(err)
-    }
+    onError: (err) => {
+      console.log(err);
+    },
   });
 
   const handleTabSwitch = (tab: "basic" | "complete") => {
@@ -62,27 +62,47 @@ const Register = () => {
         {activeTab === "basic" && (
           <form className={styles.form} onSubmit={handleSubmit}>
             <h2>Basic Registration</h2>
-            <input
-              name="username"
-              type="text"
-              placeholder="Username"
-              required
-            />
-            <input name="email" type="email" placeholder="Email" required />
-            <input
-              name="password"
-              type="password"
-              placeholder="Password"
-              required
-            />
-            <input
-              name="confirmPassword"
-              type="password"
-              placeholder="Re-enter Password"
-              required
-            />
+            <div className={styles.inputContainer}>
+              <label>Enter Full Name (Optional)</label>
+              <input
+                name="fullName"
+                type="text"
+                placeholder="Idea Man"
+              />
+            </div>
+            <div className={styles.inputContainer}>
+              <label>Enter Username *</label>
+              <input
+                name="username"
+                type="text"
+                placeholder="idea69"
+                required
+              />
+            </div>
+            <div className={styles.inputContainer}>
+              <label>Enter Email *</label>
+              <input name="email" type="email" placeholder="ideas@email.com" required />
+            </div>
+            <div className={styles.inputContainer}>
+              <label>Enter Password *</label>
+              <input
+                name="password"
+                type="password"
+                placeholder="Atleast 6 letters!"
+                required
+              />
+            </div>
+            <div className={styles.inputContainer}>
+              <label>Re Enter Password *</label>
+              <input
+                name="confirmPassword"
+                type="password"
+                placeholder="Re-enter Password"
+                required
+              />
+            </div>
             <button type="submit" disabled={isPending}>
-              {isPending ? 'Registering User...' : 'Register'}
+              {isPending ? "Registering User..." : "Register"}
             </button>
           </form>
         )}
@@ -156,19 +176,19 @@ const Register = () => {
               <label htmlFor="checkId">I agree to email verification</label>
             </div> */}
             <button type="submit" disabled={isPending || isSuccess}>
-            {isPending ? 'Registering User...' : 'Register'}
+              {isPending ? "Registering User..." : "Register"}
             </button>
           </form>
         )}
       </div>
 
-      {isError && (
-        <ErrorBox message={error.message} />
-      )}
+      {isError && <ErrorBox message={error.message} />}
       {isSuccess && (
         <>
-          <SuccessBox message='User Registration Successful!' />
-          {countdown !== undefined && <p>Redirecting to Login Page in {countdown} seconds...</p>}
+          <SuccessBox message="User Registration Successful!" />
+          {countdown !== undefined && (
+            <p>Redirecting to Login Page in {countdown} seconds...</p>
+          )}
         </>
       )}
     </div>

@@ -8,6 +8,10 @@ import SuccessBox from "../../components/SuccessBox/SuccessBox";
 import ErrorBox from "../../components/ErrorBox/ErrorBox";
 import { useRecoilValue } from "recoil";
 import { tokenState } from "../../recoil/atom";
+import { MdEditor } from "../../components/MdEditor/MdEditor";
+import { useAuth } from "../../hooks/useAuth";
+import Loader from "../../components/Loader/Loader";
+import { Link } from "react-router-dom";
 
 export default function CreateIdea() {
   const [title, setTitle] = useState<string>("");
@@ -18,38 +22,33 @@ export default function CreateIdea() {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const token = useRecoilValue(tokenState);
 
+  const { data, isLoading, isError } = useAuth();
   const mutation = useMutation({
-    mutationFn : (newIdea : FormData) => createIdea(newIdea, token || ''),
-  })
-
+    mutationFn: (newIdea: FormData) => createIdea(newIdea, token || ""),
+  });
 
   // Submit Handler :
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-  
+
     const formData = new FormData();
     formData.append("title", title);
     formData.append("description", ideaDescription);
-    
+
     formData.append("tags", JSON.stringify(selectedCategories));
 
-      
     formData.append("isOriginal", JSON.stringify(isOriginal));
-  
+
     if (!isOriginal) {
       formData.append("sourceDescription", source);
     }
-  
+
     if (isOriginal && paymentImage) {
       formData.append("image", paymentImage);
     }
-  
+
     mutation.mutate(formData);
   };
-  
-
-
-
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -57,7 +56,7 @@ export default function CreateIdea() {
       setPaymentImage(files[0]);
     }
   };
-
+  if (isLoading) return <Loader />;
   return (
     <div className={styles.container}>
       <div className={styles.formContainer}>
@@ -76,10 +75,14 @@ export default function CreateIdea() {
           </div>
           <div className={styles.inputContainer}>
             <label>What's your idea about? *</label>
-            <textarea
+            {/* <textarea
               placeholder="Describe your idea"
               value={ideaDescription}
               onChange={(e) => setIdeaDescription(e.target.value)}
+            /> */}
+            <MdEditor
+              ideaDescription={ideaDescription}
+              setIdeaDescription={setIdeaDescription}
             />
           </div>
           <CategorySelection
@@ -94,8 +97,7 @@ export default function CreateIdea() {
               onChange={(e) => setIsOriginal(e.target.checked)}
             />
           </div>
-          {!isOriginal &&
-
+          {!isOriginal && (
             <div className={styles.inputContainer}>
               <label>Describe the source for your idea</label>
               <textarea
@@ -103,21 +105,43 @@ export default function CreateIdea() {
                 onChange={(e) => setSource(e.target.value)}
               />
             </div>
-          }
-          {isOriginal &&
-          
+          )}
+          {isOriginal && (
             <div className={styles.inputContainer}>
               <label>
                 Want to receive donations for your idea? (Upload your Payment
                 Image like a QR code)
               </label>
-              <input type="file" accept="image/*" name="image" onChange={handleFileChange} />
+              <input
+                type="file"
+                accept="image/*"
+                name="image"
+                onChange={handleFileChange}
+              />
             </div>
-          }
-          <button type="submit" disabled={mutation.isPending}>{mutation.isPending ? 'Creating Idea ...' : 'Create Idea'}</button>
+          )}
+          {data.role == "user" ? (
+            <button>
+              <Link to={`/upgrade/${data._id}`}>
+                Add Full Name (Account) to create idea
+              </Link>{" "}
+            </button>
+          ) : (
+            <></>
+          )}
+          <button
+            type="submit"
+            disabled={mutation.isPending || data.role == "user"}
+          >
+            {mutation.isPending ? "Creating Idea ..." : "Create Idea"}
+          </button>
         </form>
-        {mutation.isSuccess && <SuccessBox message="Idea Created Successfully"/>}
-        {mutation.isError && <ErrorBox message={mutation.error.message || ""}/>}
+        {mutation.isSuccess && (
+          <SuccessBox message="Idea Created Successfully" />
+        )}
+        {mutation.isError && (
+          <ErrorBox message={mutation.error.message || ""} />
+        )}
       </div>
     </div>
   );

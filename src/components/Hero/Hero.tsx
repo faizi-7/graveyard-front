@@ -1,10 +1,12 @@
 import { ArrowUpRight01Icon } from "hugeicons-react";
 import styles from "./Hero.module.css";
-import firstimage from "../../assets/images/hero1.jpg";
-import secondimage from "../../assets/images/hero2.jpg";
-import thirdimage from "../../assets/images/hero3.jpg";
-import fourthimage from "../../assets/images/hero4.jpg";
+import firstimage from "../../assets/images/hero1.png";
+import secondimage from "../../assets/images/hero2.png";
+import thirdimage from "../../assets/images/hero3.png";
+import fourthimage from "../../assets/images/hero4.png";
 import { Link } from "react-router-dom";
+import TopIdeasCarousel from "../TopIdeasCarousel/TopIdeasCarousel";
+import Contact from "../Contact/Contact";
 export default function Hero() {
   return (
     <div className={styles.container}>
@@ -59,6 +61,16 @@ export default function Hero() {
             </p>
           </div>
         </div>
+      </div>
+      <hr />
+      <div className={styles.section2}>
+        <h1>Top Ideas</h1>
+        <TopIdeasCarousel />
+      </div>
+      <hr />
+      <div className={styles.section2}>
+        <h1>Let's Talk!</h1>
+        <Contact />
       </div>
     </div>
   );

@@ -20,3 +20,12 @@
   background-color: var(--success-color);
   color: white;
 }
+@media (max-width : 575px) {
+  .categoryList {
+    gap: 8px;
+  }
+  .categoryItem {
+    padding: 4px 8px;
+    font-size: var(--font-small);
+  }
+}

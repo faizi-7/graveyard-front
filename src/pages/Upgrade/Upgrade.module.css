@@ -1,0 +1,19 @@
+/* Register.module.css */
+.registerContainer {
+  width: 100%;
+  max-width: 500px;
+  margin: var(--spacing-xl) auto;
+  padding: var(--spacing-md);
+  background-color: var(--bg-secondary);
+  border-radius: 8px;
+  border: 1px solid var(--border-color)
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+.form button {
+  background-color: var(--secondary-color);
+  color: white;
+}

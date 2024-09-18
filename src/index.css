@@ -245,3 +245,10 @@ textarea {
   background-color: var(--bg-primary);
   color: var(--text-color);
 }
+
+
+/* Firefox */
+* {
+  scrollbar-width: thin; 
+  scrollbar-color:  var(--text-color)  var(--bg-primary); 
+}

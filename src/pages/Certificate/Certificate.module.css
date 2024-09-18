@@ -1,0 +1,108 @@
+.container {
+  padding: var(--spacing-xxl) 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.certificate {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 2rem 3rem;
+  max-width: 800px;
+  text-align: left;
+  box-sizing: border-box; /* Ensure padding and borders are included in width */
+  border: 2px solid var(--border-color);
+}
+
+.certificate h1 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #333;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid gold;
+  padding-bottom: 1rem;
+}
+
+.certificate p {
+  color: #555;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.certificateDetails {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.certificateDetails h2 {
+  color: #444;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.certificateDetails p {
+  margin-bottom: 0.5rem;
+}
+
+.verification {
+  font-size: 0.9rem;
+  color: #777;
+  margin-top: 2rem;
+}
+
+.verification a {
+  color: #0066cc;
+  text-decoration: none;
+}
+
+.verification a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive styles for screens smaller than 768px */
+@media (max-width: 768px) {
+  .certificate {
+    padding: 1.5rem; /* Reduce padding on smaller screens */
+    width: 100%; /* Ensure it takes full width */
+  }
+
+  .certificate h1 {
+    font-size: 1.8rem; /* Adjust font size */
+  }
+
+  .certificateDetails h2 {
+    font-size: 1.4rem; /* Adjust font size */
+  }
+
+  .certificate p {
+    font-size: 1rem; /* Adjust font size */
+  }
+}
+
+@media print {
+  .printBtn {
+    display: none; /* Hide the print button */
+  }
+
+  .certificate {
+    width: 100%; /* Ensure it takes full width */
+    margin: 0;
+    padding: 1.5rem;
+    page-break-inside: avoid;
+    box-sizing: border-box; /* Ensure padding is included in width */
+    border: none;
+
+  }
+
+  @page {
+    margin: 20mm; /* Set page margins */
+  }
+}

@@ -65,3 +65,58 @@ export async function registerUser(formData: any) {
     throw new Error(errorMessage);
   }
 }
+
+export async function upgradeUserProfile(formData: any, token : string) {
+  try {
+    const response = await axios({
+      method: 'PUT',
+      url: `${import.meta.env.VITE_API_BASE_URL}/auth/upgrade`,
+      data: formData,
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data.data;
+  } catch (err: any) {
+    const errorMessage = err.response?.data?.message || err.message || 'An unexpected error occurred';
+    throw new Error(errorMessage);
+  }
+}
+
+export async function sendVerificationMail(token : string) {
+  try {
+    const response = await axios({
+      method: 'GET',
+      url: `${import.meta.env.VITE_API_BASE_URL}/auth/verifymail`,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      timeout: 5000,
+    })
+    return response.data.data
+  } catch (err: any) {
+    const errorMessage = err.response?.data?.message || err.message || 'An unexpected error occurred';
+    throw new Error(errorMessage);
+  }
+}
+
+export async function sendContactMail({ name, email, message }: { name: string, email: string, message : string }) {
+  try {
+    const response = await axios({
+      method: 'POST',
+      url: `${import.meta.env.VITE_API_BASE_URL}/auth/contact`,
+      data: {
+        name,
+        email,
+        message
+      }
+    })
+    return response.data.data
+  } catch (err: any) {
+    const errorMessage = err.response?.data?.message || err.message || 'An unexpected error occurred';
+    throw new Error(errorMessage);
+  }
+}

@@ -1,0 +1,54 @@
+.inputComment {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--border-color);
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-height: 400px;
+  overflow-y: scroll;
+}
+.postBtn {
+  background-color: var(--secondary-color);
+  color: white;
+  max-width: max-content;
+  padding: 6px 16px;
+}
+.container button {
+  background-color: transparent;
+  padding: 0 4px;
+  color: var(--secondary-color);
+}
+.replyInput > button:first-of-type {
+  color: var(--text-color);
+}
+.comment {
+  display: flex;
+  gap: 10px;
+}
+.replyComment {
+  display: flex;
+  gap: 10px;
+}
+.avatar {
+  height: 30px;
+  width: 30px;
+  object-fit: cover;
+  border-radius: 100px;
+  overflow: hidden;
+}
+.commentContent {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+@media (max-width: 768px) {
+  .inputComment {
+    flex-direction: row;
+  }
+}

@@ -1,0 +1,15 @@
+.favorite {
+  padding: var(--spacing-xxs);
+  border-radius: 100px;
+  cursor: pointer;
+  transition: color 0.3s ease, stroke-width 0.3s ease;
+}
+.icon {
+  transition: color 0.3s ease, stroke-width 0.3s ease;
+
+}
+.favorite:hover .icon {
+  color: var(--secondary-color);
+  stroke-width: 3;
+
+}

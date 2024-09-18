@@ -9,6 +9,10 @@ import ProtectedRoute from "./layout/Protected/Protected";
 import CreateIdea from "./pages/CreateIdea/CreateIdea";
 import Profile from "./pages/Profile/Profile";
 import SingleIdea from "./pages/SingleIdea/SingleIdea";
+import Upgrade from "./pages/Upgrade/Upgrade";
+import Certificate from "./pages/Certificate/Certificate";
+import VerifyMail from "./pages/VerifyMail/VerifyMail";
+import NotFound from "./pages/NotFound/NotFound";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -36,6 +40,23 @@ export default function App() {
           path: "ideas/:ideaId",
           element: <SingleIdea />,
         },
+        {
+          path: "upgrade/:userId",
+          element: <Upgrade />,
+        },
+        {
+          path: "ideas/:ideaId/certificate",
+          element: <Certificate />,
+        },
+        {
+          path: "verifyemail",
+          element: (
+            <ProtectedRoute>
+              <VerifyMail />
+            </ProtectedRoute>
+          ),
+        },
+        { path: "*", element: <NotFound /> },
       ],
     },
   ]);

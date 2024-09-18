@@ -1,26 +1,48 @@
 .container {
   display: flex;
-  gap: 20px;
+  gap: var(--spacing-md);
   width: 100%;
   margin: var(--spacing-md) 0;
 }
+
 .ideaContainer {
   background-color: var(--bg-secondary);
   border-radius: 10px;
   flex: 2;
   padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  /* height: max-content; */
 }
 .comments {
   background-color: var(--bg-secondary);
   flex: 1;
   border-radius: 10px;
-  padding: var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  
 }
 
-
+/* Top Header Styles */
 .top {
   display: flex;
   justify-content: space-between;
+}
+.rightTop {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.certificateIcon {
+  transition: color 0.3s ease, stroke-width 0.3s ease;
+  cursor: pointer;
+}
+.certificateIcon:hover {
+  color: var(--secondary-color);
+  stroke-width: 2;
 }
 .creator {
   display: flex;
@@ -32,13 +54,12 @@
 }
 .creator > img {
   transition: border-radius 0.5s ease;
-
 }
 .creator:hover {
   color: var(--secondary-color);
 }
 .creator:hover > img {
-  border-radius: 6px
+  border-radius: 6px;
 }
 .avatar {
   height: 25px;
@@ -51,4 +72,85 @@
   gap: 4px;
   font-size: var(--font-small);
   color: var(--secondary-color);
+}
+
+/* Content Styles */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.midContent {
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--border-color);
+  font-size: var(--font-small);
+}
+/* Footer Styles */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.btns {
+  display: flex;
+  gap: 10px;
+}
+.footer button {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 8px 10px;
+}
+.date {
+  font-size: var(--font-small);
+}
+.midContent {
+  display: flex;
+  gap: 10px;
+}
+.qrImage {
+  width: auto;
+  object-fit:contain;
+  border-radius: 10px;
+}
+.status {
+  display: flex;
+  align-items: center;
+}
+
+.statusText {
+  margin-right: 4px;
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.statusOpen {
+  background-color: #28a745; /* Green */
+}
+
+.statusClosed {
+  background-color: #6c757d; /* Gray */
+}
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .ideaContainer {
+    padding: var(--spacing-sm);
+  }
+  .comments {
+    padding: var(--spacing-sm);
+  }
+  .inputComment {
+    flex-direction: row;
+  }
 }

@@ -4,8 +4,9 @@ import {
   FingerPrintIcon,
 } from "hugeicons-react";
 import styles from "./IdeaCard.module.css";
-import { timeAgo } from "../../services";
+import { timeAgo, truncateHtml } from "../../services";
 import { Link } from "react-router-dom";
+import Vote from "../Vote/Vote";
 
 interface ideaCardProps {
   ideaId: string;
@@ -25,6 +26,7 @@ export default function IdeaCard({
   isOriginal,
   createdAt,
 }: ideaCardProps) {
+  const truncatedDescription = truncateHtml(description, 100);
   return (
     <Link to={`/ideas/${ideaId}`}>
       <div className={styles.container}>
@@ -44,18 +46,11 @@ export default function IdeaCard({
         </div>
         <div className={styles.content}>
           <h2>{title}</h2>
-          <p className={styles.description}>{description}</p>
+          <p className={styles.description} dangerouslySetInnerHTML={{ __html: truncatedDescription }} />
         </div>
         <div className={styles.footer}>
           <div className={styles.date}>{timeAgo(createdAt)}</div>
-          <div className={styles.votes}>
-            <div className={styles.upvote}>
-              <ArrowUp01Icon /> {votes}
-            </div>
-            <div className={styles.downvote}>
-              <ArrowDown01Icon />
-            </div>
-          </div>
+        <Vote votes= {votes} ideaId={ideaId}/>
         </div>
       </div>
     </Link>

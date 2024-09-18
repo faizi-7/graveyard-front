@@ -24,3 +24,16 @@ export function timeAgo(timestamp: string): string {
     return `${years} year${years > 1 ? 's' : ''} ago`;
   }
 }
+
+export function truncateHtml(html:any, maxLength:number) {
+  const div = document.createElement('div');
+  div.innerHTML = html;
+
+  let text = div.textContent || div.innerText || '';
+
+  if (text.length > maxLength) {
+    text = text.slice(0, maxLength) + '...';
+  }
+
+  return `<p>${text}</p>`;
+}

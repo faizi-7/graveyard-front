@@ -10,9 +10,15 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  gap: 20px;
   padding: var(--spacing-xl) var(--spacing-md);
   text-align: center;
   border-radius: 10px;
+}
+.stranger {
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 .ideasItem {
   padding: var(--spacing-md);
@@ -27,12 +33,37 @@
   padding:var(--spacing-md);
   border-radius: 10px;
   background-color: var(--bg-secondary);
+  width: 100%;
   
 }
 .profileItem > img {
   border: 5px solid var(--bg-primary);
   width: 150px;
   border-radius: 100px;
+}
+
+
+.favItemContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.favItemItem {
+  padding: var(--spacing-md);
+  border: 2px solid var(--border-color);
+  border-radius: 5px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+.favItemItem:hover {
+  background-color: var(--bg-primary);
+}
+
+.nothinghere {
+  width: 200px;
+  border-radius: 5px;
+  align-self: center;
+  margin-top: 20px;
 }
 @media (max-width :575px) {
   .container {
