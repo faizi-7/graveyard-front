@@ -139,6 +139,21 @@
 .statusClosed {
   background-color: #6c757d; /* Gray */
 }
+.categoryList {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  border-top: 2px solid var(--border-color);
+  padding-top: 20px;
+}
+
+.categoryItem {
+  padding: 4px 8px;
+    font-size: var(--font-small);
+  background-color: var(--success-color);
+  border-radius: 4px;
+  color: white;
+}
 @media (max-width: 768px) {
   .container {
     flex-direction: column;

@@ -83,6 +83,17 @@ export default function SingleIdea() {
             dangerouslySetInnerHTML={{ __html: data.description }}
           />
         </div>
+        <div className={styles.categoryList}>
+          <strong>Categories :</strong> 
+        {data.tags.length >0 && data.tags.map((category:string) => (
+          <div
+            key={category}
+            className={`${styles.categoryItem} ${styles.selected}`}
+          >
+            {category}
+          </div>
+        ))}
+      </div>
         <div className={styles.footer}>
           <div className={styles.btns}>
             <button onClick={() => setQrModalOpen(true)}>
