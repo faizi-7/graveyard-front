@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, useLocation } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home/Home";
 import Layout from "./layout/Layout";
@@ -13,8 +13,15 @@ import Upgrade from "./pages/Upgrade/Upgrade";
 import Certificate from "./pages/Certificate/Certificate";
 import VerifyMail from "./pages/VerifyMail/VerifyMail";
 import NotFound from "./pages/NotFound/NotFound";
+import { useEffect } from "react";
+import ReactGA from 'react-ga4'
 
 export default function App() {
+  const location = useLocation();
+
+  useEffect(() => {
+    ReactGA.send({ hitType: 'pageview', page: location.pathname });
+  }, [location]);
   const router = createBrowserRouter([
     {
       path: "/",
