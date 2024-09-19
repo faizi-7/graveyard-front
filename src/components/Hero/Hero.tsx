@@ -9,7 +9,7 @@ import TopIdeasCarousel from "../TopIdeasCarousel/TopIdeasCarousel";
 import Contact from "../Contact/Contact";
 import { useAuth } from "../../hooks/useAuth";
 export default function Hero() {
-  const {data, isLoading, error}= useAuth()
+  const {data, isLoading}= useAuth()
   return (
     <div className={styles.container}>
       <div className={styles.section1}>
