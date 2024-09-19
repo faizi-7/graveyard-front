@@ -71,7 +71,10 @@
   border-radius: var(--spacing-sm);
   background-color: var(--bg-primary);
 }
-
+.section2 > p{
+  max-width: 600px;
+  text-align: center;
+}
 
 @media (max-width: 1024px) {
   .boxes {

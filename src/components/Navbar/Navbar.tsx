@@ -47,6 +47,9 @@ export default function Navbar() {
             <div className={styles.item}>
               <Link to="/ideas" className="link">Ideas</Link>
             </div>
+            <div className={styles.item}>
+              <a href="/#contact" className="link">Contact</a>
+            </div>
             {data ? (
               <>
                 <div className={styles.item}>

@@ -68,8 +68,9 @@ export default function Hero() {
         <TopIdeasCarousel />
       </div>
       <hr />
-      <div className={styles.section2}>
+      <div id="contact"  className={styles.section2} >
         <h1>Let's Talk!</h1>
+        <p>Whether you have a question about how Eyedea works, want to suggest a new feature, or just want to share your thoughts, we're here to listen.</p>
         <Contact />
       </div>
     </div>
