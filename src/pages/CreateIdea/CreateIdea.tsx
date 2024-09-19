@@ -1,7 +1,7 @@
 import { PaintBoardIcon } from "hugeicons-react";
 import styles from "./CreateIdea.module.css";
 import CategorySelection from "../../components/CategorySelection/CategorySelection";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { createIdea } from "../../api/ideasApi";
 import SuccessBox from "../../components/SuccessBox/SuccessBox";
@@ -22,7 +22,7 @@ export default function CreateIdea() {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const token = useRecoilValue(tokenState);
 
-  const { data, isLoading } = useAuth();
+  const { data, isLoading, error } = useAuth();
   const mutation = useMutation({
     mutationFn: (newIdea: FormData) => createIdea(newIdea, token || ""),
   });
@@ -49,6 +49,14 @@ export default function CreateIdea() {
 
     mutation.mutate(formData);
   };
+  const resetForm = () => {
+    setTitle("");
+    setIdeaDescription("");
+    setIsOriginal(true);
+    setSource("");
+    setPaymentImage(null);
+    setSelectedCategories([]);
+  };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -56,7 +64,13 @@ export default function CreateIdea() {
       setPaymentImage(files[0]);
     }
   };
+  useEffect(() => {
+    if (mutation.isSuccess) {
+      resetForm();
+    }
+  }, [mutation.isSuccess]);
   if (isLoading) return <Loader />;
+  if (error) return <ErrorBox message={error.message || ""} />;
   return (
     <div className={styles.container}>
       <div className={styles.formContainer}>
@@ -75,11 +89,6 @@ export default function CreateIdea() {
           </div>
           <div className={styles.inputContainer}>
             <label>What's your idea about? *</label>
-            {/* <textarea
-              placeholder="Describe your idea"
-              value={ideaDescription}
-              onChange={(e) => setIdeaDescription(e.target.value)}
-            /> */}
             <MdEditor
               ideaDescription={ideaDescription}
               setIdeaDescription={setIdeaDescription}
@@ -121,20 +130,14 @@ export default function CreateIdea() {
             </div>
           )}
           {data.role == "user" ? (
-            <button>
-              <Link to={`/upgrade/${data._id}`}>
-                Add Full Name (Account) to create idea
-              </Link>{" "}
-            </button>
+            <Link to={`/upgrade/${data.userId}`}>
+              <button>Add Full Name (Account) to create idea</button>
+            </Link>
           ) : (
-            <></>
+            <button type="submit" disabled={mutation.isPending}>
+              {mutation.isPending ? "Creating Idea ..." : "Create Idea"}
+            </button>
           )}
-          <button
-            type="submit"
-            disabled={mutation.isPending || data.role == "user"}
-          >
-            {mutation.isPending ? "Creating Idea ..." : "Create Idea"}
-          </button>
         </form>
         {mutation.isSuccess && (
           <SuccessBox message="Idea Created Successfully" />

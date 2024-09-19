@@ -109,7 +109,11 @@ export default function SingleIdea() {
       </div>
       <Modal isOpen={isQrModalOpen} onClose={() => setQrModalOpen(false)}>
         <h2>Donate to {data.creator.fullname}</h2>
-        <img src={data.donationQrCodeUrl} className={styles.qrImage} />
+        {data.donationQrCodeUrl ? (
+          <img src={data.donationQrCodeUrl} className={styles.qrImage} />
+        ) : (
+          <h3>Author is not Receiving Donations</h3>
+        )}
       </Modal>
       <Modal
         isOpen={isUpdateModalOpen}

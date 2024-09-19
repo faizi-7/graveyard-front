@@ -61,31 +61,33 @@ const Register = () => {
       <div className={styles.formContainer}>
         {activeTab === "basic" && (
           <form className={styles.form} onSubmit={handleSubmit}>
-            <h2>Basic Registration</h2>
+            <h2>Quick Signup!</h2>
             <div className={styles.inputContainer}>
-              <label>Enter Username *</label>
+              <label>Choose a Username</label>
               <input
                 name="username"
                 type="text"
-                placeholder="idea69"
+                placeholder="Create a unique username (e.g., IdeaHero123)"
                 required
               />
             </div>
             <div className={styles.inputContainer}>
-              <label>Enter Email *</label>
-              <input name="email" type="email" placeholder="ideas@email.com" required />
+              <label>Your Email Address</label>
+              <input name="email" type="email" placeholder="Enter your email address
+
+" required />
             </div>
             <div className={styles.inputContainer}>
-              <label>Enter Password *</label>
+              <label>Create a Password</label>
               <input
                 name="password"
                 type="password"
-                placeholder="Atleast 6 letters!"
+                placeholder="Atleast 6 characters!"
                 required
               />
             </div>
             <div className={styles.inputContainer}>
-              <label>Re Enter Password *</label>
+              <label>Re Enter Password</label>
               <input
                 name="confirmPassword"
                 type="password"
@@ -101,61 +103,61 @@ const Register = () => {
 
         {activeTab === "complete" && (
           <form className={styles.form} onSubmit={handleSubmit}>
-            <h2>Complete Registration</h2>
+            <h2>Create & Contribute Account</h2>
             <div className={styles.inputContainer}>
-              <label>Enter Full Name</label>
+              <label>What should we call you?</label>
               <input
                 name="fullName"
                 type="text"
-                placeholder="Idea Man"
+                placeholder="Enter your full name"
                 required
               />
             </div>
             <div className={styles.inputContainer}>
-              <label>Enter Username</label>
+              <label>Choose a Unique Username</label>
               <input
                 name="username"
                 type="text"
-                placeholder="idea69"
+                placeholder="Pick a username (e.g., IdeaHero123)"
                 required
               />
             </div>
             <div className={styles.inputContainer}>
-              <label>Enter Email</label>
+              <label>Your Email Address</label>
               <input
                 name="email"
                 type="email"
-                placeholder="idea69@gmail.com"
+                placeholder="Enter a valid email address (for login and notifications)"
                 required
               />
             </div>
             <div className={styles.inputContainer}>
-              <label>Enter Password</label>
+              <label>Create a Strong Password</label>
               <input
                 name="password"
                 type="password"
-                placeholder="******"
+                placeholder="Choose a password (min 6 characters)"
                 required
               />
             </div>
             <div className={styles.inputContainer}>
-              <label>Re Enter Password</label>
+              <label>Confirm Your Password</label>
               <input
                 name="confirmPassword"
                 type="password"
-                placeholder="******"
+                placeholder="Re-enter your password"
                 required
               />
             </div>
             <div className={styles.inputContainer}>
-              <label>Enter About Yourself</label>
+              <label>Share Your Story! (Optional)</label>
               <textarea
                 name="about"
-                placeholder="I am ultra cool, fun and nice guy"
+                placeholder="Tell us a little about yourself. Why are you here? What drives you?"
               />
             </div>
             <div className={styles.inputContainer}>
-              <label>Drop your photo here!</label>
+              <label>Add Your Photo (Optional)</label>
               <input type="file" accept="image/*" name="image" />
             </div>
             {/* <div className={styles.inputCheckbox}>

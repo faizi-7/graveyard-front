@@ -5,6 +5,7 @@ import { tokenState } from "../../recoil/atom";
 import { upgradeUserProfile } from "../../api/authApi";
 import { useRecoilState } from "recoil";
 import { notyf } from "../../utils/notyf";
+import { Link } from "react-router-dom";
 
 const Upgrade = () => {
   const [fullname, setFullname] = useState("");
@@ -13,7 +14,7 @@ const Upgrade = () => {
 
   const [token] = useRecoilState(tokenState);
   const queryClient = useQueryClient();
-  const { isPending, mutate } = useMutation({
+  const { isPending, mutate, isSuccess } = useMutation({
     mutationFn: (formData: FormData) =>
       upgradeUserProfile(formData, token || ""),
     onSuccess: () => {
@@ -81,6 +82,7 @@ const Upgrade = () => {
           <button type="submit" disabled={isPending}>
             {isPending ? "Upgrading..." : "Upgrade"}
           </button>
+          {isSuccess &&  <Link to='/create' className="link">Go to create idea page</Link>}
         </form>
       </div>
     </div>
