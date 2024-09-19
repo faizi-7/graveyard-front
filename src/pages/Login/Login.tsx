@@ -9,7 +9,6 @@ import { tokenState } from "../../recoil/atom";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [repass, setRepass] = useState("");
   const setToken= useSetRecoilState(tokenState)
   const navigate= useNavigate()
   
@@ -30,10 +29,7 @@ const Login = () => {
 
   // Form submission
   function submitForm(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault(); // Prevent default form submission
-    if (password !== repass) {
-      return alert("Passwords do not match!");
-    }
+    event.preventDefault(); 
     // Trigger the mutation
     mutate({ email, password });
   }
@@ -57,18 +53,14 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <input
-            type="password"
-            placeholder="Re-enter Password"
-            required
-            value={repass}
-            onChange={(e) => setRepass(e.target.value)}
-          />
           <button type="submit" disabled={isPending}>
             {isPending ? "Logging in..." : "Login"}
           </button>
+          <div className={styles.createAcc}>
+            <Link to="/register" className="link">Create Account ?</Link>
+          </div>
           <div className={styles.warning}>
-            <Link to="/forgot">Forgot Password?</Link>
+            <Link to="/forgot" className="link">Forgot Password?</Link>
           </div>
         </form>
       </div>

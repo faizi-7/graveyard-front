@@ -81,15 +81,15 @@ const Contact: React.FC = () => {
             value={formValues.message}
             onChange={handleChange}
             required
-            placeholder="Your Message"
+            placeholder="Your Message (Min 10 Words)"
             ></textarea>
         </div>
 
         <button type="submit" disabled={mutation.isPending}>
           {mutation.isPending ? 'Sending...' : 'Send Message'}
         </button>
-        {formErrors && <SuccessBox message={formErrors}/>}
-        {successMessage && <ErrorBox message={successMessage}/>}
+        {formErrors && <ErrorBox message={formErrors}/>}
+        {successMessage && <SuccessBox message={successMessage}/>}
       </form>
     </section>
   );
