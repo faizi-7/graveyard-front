@@ -6,6 +6,7 @@ import Loader from "../../components/Loader/Loader";
 import { AnonymousIcon } from "hugeicons-react";
 import UserIdeas from "../../components/UserIdeas/UserIdeas";
 import nothinghere from '../../assets/images/nothinghere.png'
+import ErrorBox from "../../components/ErrorBox/ErrorBox";
 
 export default function Profile() {
   const { userId } = useParams();
@@ -16,6 +17,7 @@ export default function Profile() {
   });
   console.log(data);
   if (isLoading) return <Loader />;
+  if(error) return <ErrorBox message={error.message || "Error Occured"}/>
   return (
     <div className={styles.container}>
       <div className={styles.profileItem}>

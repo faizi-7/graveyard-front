@@ -1,6 +1,4 @@
 import {
-  ArrowDown01Icon,
-  ArrowUp01Icon,
   FingerPrintIcon,
 } from "hugeicons-react";
 import styles from "./IdeaCard.module.css";

@@ -76,7 +76,7 @@ export default function Discussion({ ideaId, ideaCreatorId }: { ideaId: string, 
   };
 
   if (isLoading) return <Loader />;
-
+  if(error) return <ErrorBox message={error.message || "Error Occured"}/>
   return (
     <>
       <h2>Discussion</h2>

@@ -22,7 +22,7 @@ export default function CreateIdea() {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const token = useRecoilValue(tokenState);
 
-  const { data, isLoading, isError } = useAuth();
+  const { data, isLoading } = useAuth();
   const mutation = useMutation({
     mutationFn: (newIdea: FormData) => createIdea(newIdea, token || ""),
   });

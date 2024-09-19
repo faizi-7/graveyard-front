@@ -16,7 +16,7 @@ const Upgrade = () => {
   const { isPending, mutate } = useMutation({
     mutationFn: (formData: FormData) =>
       upgradeUserProfile(formData, token || ""),
-    onSuccess: (data) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["auth"] });
       setFullname("");
       setAbout("");

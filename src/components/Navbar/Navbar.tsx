@@ -8,7 +8,7 @@ import { tokenState } from "../../recoil/atom";
 import logo from '../../assets/images/logo.png'
 
 export default function Navbar() {
-  const { data, isLoading, error } = useAuth();
+  const { data, isLoading } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const [theme, setTheme] = useState("light");
   const setToken = useSetRecoilState(tokenState);

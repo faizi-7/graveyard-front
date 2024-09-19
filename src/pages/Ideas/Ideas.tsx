@@ -6,7 +6,7 @@ import Loader from "../../components/Loader/Loader";
 import ErrorBox from "../../components/ErrorBox/ErrorBox";
 import { useState } from "react";
 import Filter from "../../components/Filter/Filter";
-import { Loading01Icon, Loading02Icon, Loading03Icon } from "hugeicons-react";
+import { Loading03Icon } from "hugeicons-react";
 
 export default function Ideas() {
   const [sortBy, setSortBy] = useState<string | undefined>("");
