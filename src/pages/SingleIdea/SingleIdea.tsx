@@ -4,14 +4,10 @@ import { getSingleIdea } from "../../api/ideasApi";
 import { Link, useParams } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
 import {
-  ArrowDown01Icon,
-  ArrowUp01Icon,
   Certificate01Icon,
   FingerPrintIcon,
-  QrCode01Icon,
   QrCodeIcon,
   Settings01Icon,
-  StarIcon,
 } from "hugeicons-react";
 import { timeAgo } from "../../services";
 import ErrorBox from "../../components/ErrorBox/ErrorBox";
