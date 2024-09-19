@@ -63,14 +63,6 @@ const Register = () => {
           <form className={styles.form} onSubmit={handleSubmit}>
             <h2>Basic Registration</h2>
             <div className={styles.inputContainer}>
-              <label>Enter Full Name (Optional)</label>
-              <input
-                name="fullName"
-                type="text"
-                placeholder="Idea Man"
-              />
-            </div>
-            <div className={styles.inputContainer}>
               <label>Enter Username *</label>
               <input
                 name="username"

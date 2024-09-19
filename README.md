@@ -1,50 +1,36 @@
-# React + TypeScript + Vite
+# Idea Sharing Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is built using React, TypeScript, and Vite, providing a fast and modern development setup with HMR (Hot Module Replacement). The platform allows users to share ideas, and it's designed to be robust and user-friendly.
 
-Currently, two official plugins are available:
+## Domain
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The application is live at: **[idea.ifaiz.xyz](https://idea.ifaiz.xyz)**
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **React 18** for modern UI development.
+- **TypeScript** for type safety and improved development experience.
+- **Vite** for fast build times and instant hot reloading.
+- **ESLint** with enhanced type-aware lint rules to ensure code quality.
+- **SWC** for Fast Refresh, making development faster with minimal recompile times.
+  
+## Installation
 
-- Configure the top-level `parserOptions` property like this:
+Clone the repository and install the dependencies using Yarn:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+git clone https://github.com/faizi-7/graveyard-front.git
+cd graveyard-front
+yarn install
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+Development
+```bash
+yarn dev
 ```
+
+Production
+```bash
+yarn build
+```
+
