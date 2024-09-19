@@ -32,7 +32,7 @@ export default function Certificate() {
         <p>This certificate is to verify the creation of the following idea:</p>
 
         <div className={styles.certificateDetails}>
-          <h2>Idea Title: {data.title}</h2>
+          <h2>Idea : {data.title}</h2>
           <p>
             <strong>Submitted by:</strong> {data.creator.fullname}
           </p>
@@ -44,18 +44,18 @@ export default function Certificate() {
             {new Date(data.createdAt).toLocaleDateString()}
           </p>
           <p>
-            <strong>Platform:</strong> IdeaHub
+            <strong>Platform:</strong> Eyedea
           </p>
         </div>
 
         <div className={styles.verification}>
           <p>
-            Verified by <strong>ideahub.xyz</strong>
+            Verified by <strong>idea.ifaiz.xyz</strong>
           </p>
           <p>
             URL:{" "}
-            <a href={`https://ideahub.com/ideas/${ideaId}/certificate`}>
-              https://ideahub.com/ideas/{ideaId}/certificate
+            <a href={`https://idea.ifaiz.com/ideas/{ideaId}/certificate`}>
+              https://idea.ifaiz.com/ideas/{ideaId}/certificate
             </a>
           </p>
         </div>
