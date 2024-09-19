@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider, useLocation } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home/Home";
 import Layout from "./layout/Layout";
@@ -14,59 +14,79 @@ import Certificate from "./pages/Certificate/Certificate";
 import VerifyMail from "./pages/VerifyMail/VerifyMail";
 import NotFound from "./pages/NotFound/NotFound";
 import { useEffect } from "react";
-import ReactGA from 'react-ga4'
+import ReactGA from 'react-ga4';
+import { useLocation } from "react-router-dom";
 
-export default function App() {
+function Analytics() {
   const location = useLocation();
-
+  
   useEffect(() => {
     ReactGA.send({ hitType: 'pageview', page: location.pathname });
   }, [location]);
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Layout />,
-      children: [
-        { index: true, element: <Home /> },
-        { path: "register", element: <Register /> },
-        { path: "login", element: <Login /> },
-        { path: "ideas", element: <Ideas /> },
-        {
-          path: "create",
-          element: (
-            <ProtectedRoute>
-              <CreateIdea />
-            </ProtectedRoute>
-          ),
-        },
-        {
-          path: "profile/:userId",
-          element: <Profile />,
-        },
-        {
-          path: "ideas/:ideaId",
-          element: <SingleIdea />,
-        },
-        {
-          path: "upgrade/:userId",
-          element: <Upgrade />,
-        },
-        {
-          path: "ideas/:ideaId/certificate",
-          element: <Certificate />,
-        },
-        {
-          path: "verifyemail",
-          element: (
-            <ProtectedRoute>
-              <VerifyMail />
-            </ProtectedRoute>
-          ),
-        },
-        { path: "*", element: <NotFound /> },
-      ],
-    },
-  ]);
+  
+  return null;
+}
 
-  return <RouterProvider router={router}></RouterProvider>;
+function AnalyticsWrapper() {
+  return (
+    <>
+      <Analytics />
+      <Outlet />
+    </>
+  );
+}
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <AnalyticsWrapper />,
+    children: [
+      {
+        element: <Layout />,
+        children: [
+          { index: true, element: <Home /> },
+          { path: "register", element: <Register /> },
+          { path: "login", element: <Login /> },
+          { path: "ideas", element: <Ideas /> },
+          {
+            path: "create",
+            element: (
+              <ProtectedRoute>
+                <CreateIdea />
+              </ProtectedRoute>
+            ),
+          },
+          {
+            path: "profile/:userId",
+            element: <Profile />,
+          },
+          {
+            path: "ideas/:ideaId",
+            element: <SingleIdea />,
+          },
+          {
+            path: "upgrade/:userId",
+            element: <Upgrade />,
+          },
+          {
+            path: "ideas/:ideaId/certificate",
+            element: <Certificate />,
+          },
+          {
+            path: "verifyemail",
+            element: (
+              <ProtectedRoute>
+                <VerifyMail />
+              </ProtectedRoute>
+            ),
+          },
+          { path: "*", element: <NotFound /> },
+        ],
+      },
+    ],
+  },
+]);
+
+export default function App() {
+  return <RouterProvider router={router} />;
 }
